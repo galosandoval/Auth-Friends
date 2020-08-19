@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const initialFriends = [];
 
@@ -54,6 +56,14 @@ export const Friends = () => {
       {illBeThereForYou.map(friend => {
         return <p key={friend.id}>{friend.name}</p>
       })}
+       <Loader
+         type="Puff"
+         color="#00BFFF"
+         height={100}
+         width={100}
+         timeout={1000} //3 secs
+ 
+      />
       <div>
         <form onSubmit={onSubmit}>
           <input 
