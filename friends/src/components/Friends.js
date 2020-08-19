@@ -1,20 +1,10 @@
-// for friends GET
-// getData = () => {
-//   axiosWithAuth()
-//   .get('/friends/')
-//   .then(res => {
-//     this.setState({
-//       friends: res.data
-//     })
-//   })
-// }
-
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialFriends = [];
 
 const initialFormValues = {
+  id: new Date(),
   name: "",
   age: "",
   email: "",
@@ -37,6 +27,10 @@ export const Friends = () => {
         ...illBeThereForYou, addFriend
       ])
     })
+    .catch(err => {
+      console.log(err, 'lolol')
+    })
+    setForm(initialFormValues)
   }
 
   const onChange = (e) => {
@@ -55,5 +49,37 @@ export const Friends = () => {
       });
   }, []);
 
-  return null;
+  return (
+    <div>
+      {illBeThereForYou.map(friend => {
+        return <p key={friend.id}>{friend.name}</p>
+      })}
+      <div>
+        <form onSubmit={onSubmit}>
+          <input 
+            name='name'
+            type='text'
+            placeholder="new friend's name"
+            value={illBeThereForYou.name}
+            onChange={onChange}
+          />
+          <input 
+            name='age'
+            type='text'
+            placeholder="new friend's age"
+            value={illBeThereForYou.age}
+            onChange={onChange}
+          />
+          <input 
+            name='email'
+            type='text'
+            placeholder="new friend's email"
+            value={illBeThereForYou.email}
+            onChange={onChange}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
+    </div>
+  );
 };
