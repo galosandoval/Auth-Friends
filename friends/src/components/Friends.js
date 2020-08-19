@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import Loader from 'react-loader-spinner'
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const initialFriends = [];
 
@@ -17,23 +17,21 @@ export const Friends = () => {
   const [form, setForm] = useState(initialFormValues);
 
   const addFriend = {
-    ...form
-  }
+    ...form,
+  };
 
-  const onSubmit = e => {
-    e.preventDefault()
+  const onSubmit = (e) => {
+    e.preventDefault();
     axiosWithAuth()
-    .post('api/friends', addFriend)
-    .then(res => {
-      SetIllBeThereForYou([
-        ...illBeThereForYou, addFriend
-      ])
-    })
-    .catch(err => {
-      console.log(err, 'lolol')
-    })
-    setForm(initialFormValues)
-  }
+      .post("api/friends", addFriend)
+      .then((res) => {
+        SetIllBeThereForYou([...illBeThereForYou, addFriend]);
+      })
+      .catch((err) => {
+        console.log(err, "lolol");
+      });
+    setForm(initialFormValues);
+  };
 
   const onChange = (e) => {
     setForm({
@@ -53,36 +51,35 @@ export const Friends = () => {
 
   return (
     <div>
-      {illBeThereForYou.map(friend => {
-        return <p key={friend.id}>{friend.name}</p>
+      {illBeThereForYou.map((friend) => {
+        return <p key={friend.id}>{friend.name}</p>;
       })}
-       <Loader
-         type="Puff"
-         color="#00BFFF"
-         height={100}
-         width={100}
-         timeout={1000} //3 secs
- 
+      <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={1000}
       />
       <div>
         <form onSubmit={onSubmit}>
-          <input 
-            name='name'
-            type='text'
+          <input
+            name="name"
+            type="text"
             placeholder="new friend's name"
             value={illBeThereForYou.name}
             onChange={onChange}
           />
-          <input 
-            name='age'
-            type='text'
+          <input
+            name="age"
+            type="text"
             placeholder="new friend's age"
             value={illBeThereForYou.age}
             onChange={onChange}
           />
-          <input 
-            name='email'
-            type='text'
+          <input
+            name="email"
+            type="text"
             placeholder="new friend's email"
             value={illBeThereForYou.email}
             onChange={onChange}
