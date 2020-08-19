@@ -3,6 +3,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Link, Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { Login } from "./components/Login";
+import { PrivateRoute } from './components/PrivateRoute'
+import { Friends } from './components/Friends'
 
 function App() {
   return (
@@ -10,12 +12,12 @@ function App() {
       <div className="App">
         <nav>
           <Link to="/login">Login</Link>
-          {/* <Link to="/friends">Protected Page</Link> */}
+          <Link to="/friends">Protected Page</Link>
         </nav>
         <Switch>
           <Route path="/login" component={Login} />
-          {/* <PrivateRoute path='/protected' component={friends />} */}
-          <Route exact path="/friends" />
+          <PrivateRoute exact path='/friends' component={Friends} />
+          {/* <Route exact path="/friends" /> */}
         </Switch>
       </div>
     </Router>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const initialValue = {
   username: "",
@@ -22,7 +23,7 @@ export const Login = () => {
   const login = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/api/login", credentials)
+      .post("api/login", credentials)
       .then((res) => {
         localStorage.setItem("token", res.data.payload);
         history.push("/friends");
